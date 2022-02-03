@@ -100,10 +100,11 @@
       status = "loading";
       const rawContent = await readFileContent(file);
       status = "processing";
+      const reg = /[,;]/;
       const csv = rawContent
         .split("\n")
         .filter(l => !!l)
-        .map((l) => l.split(","));
+        .map((l) => l.split(reg));
 
       const head = csv[0].slice(0, csv[0].indexOf(""));
       records = csv
